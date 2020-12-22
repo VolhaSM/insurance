@@ -15,7 +15,6 @@ import java.util.List;
 public class InsuranceClient {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;

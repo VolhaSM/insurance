@@ -15,7 +15,6 @@ import javax.persistence.Id;
 
 public class PersonalPolicy {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer clientId;
     private String shortDescription;
