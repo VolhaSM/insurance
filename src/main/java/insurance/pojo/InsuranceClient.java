@@ -20,7 +20,7 @@ public class InsuranceClient {
     private String firstName;
     private String lastName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PersonalPolicy> police;
 
 

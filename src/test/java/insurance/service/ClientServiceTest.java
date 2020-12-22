@@ -22,8 +22,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationConfiguration.class)
 @TestPropertySource(locations = "classpath:applicationTest.properties")
-
-class ClientServiceTest  {
+class ClientServiceTest {
 
     @Autowired
     ClientService clientService;
@@ -63,18 +62,23 @@ class ClientServiceTest  {
         assertEquals(client1.getId(), client.get().getId());
         assertEquals(client1.getFirstName(), client.get().getFirstName());
 
-
     }
 
     @Test
     void getClientById() {
+
+        clientService.createClient(createInsuranceClient());
+        Optional<InsuranceClient> client = clientService.getClientById(1);
+        assertEquals(client.get().getId(), 1);
     }
 
     @Test
     void findAllClients() {
+
+        clientService.createClient(createInsuranceClient());
+        List<InsuranceClient> clients = clientService.findAllClients();
+        assertEquals(clients.size(), 1);
     }
-
-
 
 
 }
