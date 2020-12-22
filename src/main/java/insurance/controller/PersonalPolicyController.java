@@ -15,12 +15,12 @@ public class PersonalPolicyController {
     PersonalPolicyService personalPolicyService;
 
     @PostMapping("/polices")
-    public PersonalPolicy createPolice (@RequestBody PersonalPolicy personalPolicy) {
+    public PersonalPolicy createPolicy(@RequestBody PersonalPolicy personalPolicy) {
         return personalPolicyService.createPolice(personalPolicy);
     }
 
     @GetMapping("/polices/{policeId}")
-    public Optional<PersonalPolicy> findPoliceById(@PathVariable Integer policeId) {
+    public Optional<PersonalPolicy> findPolicyById(@PathVariable Integer policeId) {
         return personalPolicyService.findPoliceById(policeId);
     }
 
