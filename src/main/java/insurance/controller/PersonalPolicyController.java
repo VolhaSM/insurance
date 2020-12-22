@@ -1,7 +1,7 @@
 package insurance.controller;
 
-import insurance.pojo.PersonalPolice;
-import insurance.service.PersonalPoliceService;
+import insurance.pojo.PersonalPolicy;
+import insurance.service.PersonalPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +12,20 @@ import java.util.Optional;
 public class PersonalPolicyController {
 
     @Autowired
-    PersonalPoliceService personalPoliceService;
+    PersonalPolicyService personalPolicyService;
 
     @PostMapping("/polices")
-    public PersonalPolice createPolice (@RequestBody PersonalPolice personalPolice) {
-        return personalPoliceService.createPolice(personalPolice);
+    public PersonalPolicy createPolice (@RequestBody PersonalPolicy personalPolicy) {
+        return personalPolicyService.createPolice(personalPolicy);
     }
 
     @GetMapping("/polices/{policeId}")
-    public Optional<PersonalPolice> findPoliceById(@PathVariable Integer policeId) {
-        return personalPoliceService.findPoliceById(policeId);
+    public Optional<PersonalPolicy> findPoliceById(@PathVariable Integer policeId) {
+        return personalPolicyService.findPoliceById(policeId);
     }
 
     @GetMapping("/polices")
-    public List<PersonalPolice> findAllPolices() {
-        return personalPoliceService.findAllPolices();
+    public List<PersonalPolicy> findAllPolices() {
+        return personalPolicyService.findAllPolices();
     }
 }

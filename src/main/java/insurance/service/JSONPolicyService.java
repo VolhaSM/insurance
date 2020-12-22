@@ -1,6 +1,6 @@
 package insurance.service;
 
-import insurance.pojo.PersonalPolice;
+import insurance.pojo.PersonalPolicy;
 import insurance.repository.PersonalPoliceRepo;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class JSONPolicyService {
     public JSONObject getJsonObject(Integer policeId) {
 
 
-        Optional <PersonalPolice> pp = personalPoliceRepo.findById(policeId);
+        Optional <PersonalPolicy> pp = personalPoliceRepo.findById(policeId);
 
         JSONObject jsonObject = new JSONObject();
 

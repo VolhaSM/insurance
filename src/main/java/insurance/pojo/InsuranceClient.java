@@ -3,7 +3,6 @@ package insurance.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +21,7 @@ public class InsuranceClient {
     private String lastName;
 
     @OneToMany
-    private List<PersonalPolice> police;
+    private List<PersonalPolicy> police;
 
 
 }

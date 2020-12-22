@@ -1,81 +1,69 @@
 package insurance.service;
 
-import insurance.controller.ClientController;
+import insurance.ApplicationConfiguration;
 import insurance.pojo.CoverageTypes;
 import insurance.pojo.InsuranceClient;
-import insurance.pojo.PersonalPolice;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.junit.After;
-import org.junit.Before;
+import insurance.pojo.PersonalPolicy;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest(classes = ApplicationConfiguration.class)
+@TestPropertySource(locations = "classpath:applicationTest.properties")
 
-class ClientServiceTest extends ModelTest {
-
-    @Autowired
-    MockMvc mockMvc;
+class ClientServiceTest  {
 
     @Autowired
-    private ClientController clientController;
+    ClientService clientService;
 
-    @Before
-    public void setUp() throws Exception {
+    @Resource
+    PersonalPolicyService policyService;
 
-        super.setUp();
+    public InsuranceClient createInsuranceClient() {
+        InsuranceClient client = new InsuranceClient();
+        client.setId(1);
+        client.setFirstName("Bob");
+        client.setLastName("Marley");
+        client.setPolice(List.of(createNewPolicy()));
+
+        return client;
     }
 
+    public PersonalPolicy createNewPolicy() {
+        PersonalPolicy policy = new PersonalPolicy();
+        policy.setId(1);
+        policy.setClientId(1);
+        policy.setObjectOfInsurance("car");
+        policy.setShortDescription("black");
+        policy.setCoverageType(CoverageTypes.FULL_COVERAGE);
+
+        return policy;
+
+
+    }
 
     @Test
     void createClient() {
 
-        InsuranceClient client = new InsuranceClient();
-        client.setFirstName("alex");
-        client.setLastName("smith");
-        //client.setId(11);
+        InsuranceClient client1 = createInsuranceClient();
+        clientService.createClient(client1);
+        Optional<InsuranceClient> client = clientService.getClientById(1);
+        assertEquals(client1.getId(), client.get().getId());
+        assertEquals(client1.getFirstName(), client.get().getFirstName());
 
 
-        PersonalPolice police = new PersonalPolice();
-
-        //police.setClientId(11);
-        police.setCoverageType(CoverageTypes.FULL_COVERAGE);
-        police.setObjectOfInsurance("opel");
-        police.setShortDescription("grey");
-
-        List<PersonalPolice> polices = new ArrayList<>();
-        polices.add(police);
-
-        client.setPolice(polices);
-
-
-        //when
-        Integer clientId = save(client);
-        Integer policeId = client.getPolice().get(0).getId();
-
-        InsuranceClient savedClient = get(clientId);
-
-        //then
-
-        assertNotNull(clientId);
-        assertNotNull(policeId);
-        assertNotNull(savedClient.getPolice());
-
-        assertEquals(policeId, savedClient.getPolice().get(0).getId());
     }
 
     @Test
@@ -86,57 +74,7 @@ class ClientServiceTest extends ModelTest {
     void findAllClients() {
     }
 
-    private Integer save(InsuranceClient client) {
-
-        Session sess = factory.openSession();
-        Transaction tx = null;
-        Integer clientId;
-
-        try {
-            tx = sess.beginTransaction();
-            clientId = (Integer) sess.save(client);
-
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            throw e;
-        } finally {
-            sess.close();
-
-        }
-
-        return clientId;
-    }
-
-    public InsuranceClient get(Integer clientId) { // get by ID
-        Session appSession = factory.openSession(); // сессия связи с БД
-
-        InsuranceClient client;
-        Transaction tx = null;
-        try {
-            tx = appSession.beginTransaction();
-            client = appSession.get(InsuranceClient.class, clientId);
-
-            tx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw e;
-
-        } finally {
-            appSession.close();
-        }
 
 
-        return client;
 
-    }
-
-
-    @After
-    public void tearDown() throws Exception{
-        super.tearDown();
-    }
 }

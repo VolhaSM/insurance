@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PersonalPolice {
+public class PersonalPolicy {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
