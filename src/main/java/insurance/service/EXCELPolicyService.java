@@ -1,7 +1,7 @@
 package insurance.service;
 
 import insurance.dto.PersonalPolicyDTO;
-import insurance.model.PersonalPolicy;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class EXCELPolicyService {
 
-    @Autowired
-    PersonalPolicyService personalPolicyService;
+
+    private final PersonalPolicyService personalPolicyService;
 
     public void writeExcelFile(Integer policyId, String filePath) {
         String[] columns = {"id", "clientId", "shortDescription", "objectOfInsurance", "coverageType"};

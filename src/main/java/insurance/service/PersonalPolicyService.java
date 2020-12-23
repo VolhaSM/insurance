@@ -4,21 +4,19 @@ import insurance.dto.PersonalPolicyDTO;
 import insurance.mapper.PersonalPolicyMapper;
 import insurance.model.PersonalPolicy;
 import insurance.repository.PersonalPoliceRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class PersonalPolicyService {
 
-    @Autowired
-    PersonalPoliceRepo personalPoliceRepo;
 
-    @Autowired
-    PersonalPolicyMapper personalPolicyMapper;
+    private final PersonalPoliceRepo personalPoliceRepo;
+    private final PersonalPolicyMapper personalPolicyMapper;
 
     public PersonalPolicyDTO createPolice(PersonalPolicyDTO personalPolicyDTO) {
 
@@ -29,8 +27,6 @@ public class PersonalPolicyService {
     }
 
     public PersonalPolicyDTO findPoliceById(int policeId) {
-
-
         return personalPolicyMapper.toPersonalPolicyDTO(personalPoliceRepo.findById(policeId));
 
     }

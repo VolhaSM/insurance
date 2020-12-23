@@ -25,6 +25,6 @@ public class InsuranceClientDTO {
     @NotNull
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PersonalPolicy> police;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   private List<PersonalPolicy> police;
 }

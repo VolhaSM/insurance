@@ -1,9 +1,12 @@
 package insurance.service;
 
 import insurance.ApplicationConfiguration;
+import insurance.dto.InsuranceClientDTO;
+import insurance.dto.PersonalPolicyDTO;
 import insurance.model.CoverageTypes;
 import insurance.model.InsuranceClient;
 import insurance.model.PersonalPolicy;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,24 +25,24 @@ import static org.junit.Assert.assertEquals;
 @TestPropertySource(locations = "classpath:applicationTest.properties")
 class ClientServiceTest {
 
-    @Autowired
-    ClientService clientService;
 
-    @Resource
+    ClientService clientService;
     PersonalPolicyService policyService;
 
-    public InsuranceClient createInsuranceClient() {
-        InsuranceClient client = new InsuranceClient();
+    @Before
+    public InsuranceClientDTO createInsuranceClient() {
+        InsuranceClientDTO client = new InsuranceClientDTO();
         client.setId(1);
         client.setFirstName("Bob");
         client.setLastName("Marley");
-        client.setPolice(List.of(createNewPolicy()));
+        //client.setPolice(List.of(createNewPolicy()));
 
         return client;
     }
 
-    public PersonalPolicy createNewPolicy() {
-        PersonalPolicy policy = new PersonalPolicy();
+    @Before
+    public PersonalPolicyDTO createNewPolicy() {
+        PersonalPolicyDTO policy = new PersonalPolicyDTO();
         policy.setId(1);
         policy.setClientId(1);
         policy.setObjectOfInsurance("car");
@@ -54,7 +57,7 @@ class ClientServiceTest {
     @Test
     void createClient() {
 
-//        InsuranceClient client1 = createInsuranceClient();
+       InsuranceClientDTO client1 = createInsuranceClient();
 //        clientService.createClient(client1);
 //        Optional<InsuranceClient> client = clientService.getClientById(1);
 //        assertEquals(client1.getId(), client.get().getId());
