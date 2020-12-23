@@ -1,8 +1,10 @@
 package insurance.controller;
 
-import insurance.pojo.InsuranceClient;
+import insurance.dto.InsuranceClientDTO;
+import insurance.model.InsuranceClient;
 import insurance.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,17 +16,18 @@ public class ClientController {
     ClientService clientService;
 
     @PostMapping("/clients")
-    public InsuranceClient createClient(@RequestBody InsuranceClient client) {
-        return clientService.createClient(client);
+    public ResponseEntity<InsuranceClientDTO> createClient(@RequestBody InsuranceClientDTO client) {
+        return ResponseEntity.ok(clientService.createClient(client));
     }
 
     @GetMapping("/clients/{clientId}")
-    public Optional<InsuranceClient> findClientById(@PathVariable Integer clientId) {
-        return clientService.getClientById(clientId);
+    public ResponseEntity<InsuranceClientDTO> findClientById(@PathVariable Integer clientId) {
+        return ResponseEntity.ok(clientService.getClientById(clientId));
     }
 
     @GetMapping("/clients")
-    public List<InsuranceClient> findAllClients() {
-        return clientService.findAllClients();
+    public ResponseEntity<List<InsuranceClientDTO>> findAllClients() {
+
+        return ResponseEntity.ok(clientService.findAllClients());
     }
 }

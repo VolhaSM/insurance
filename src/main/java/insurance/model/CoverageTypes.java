@@ -1,4 +1,4 @@
-package insurance.pojo;
+package insurance.model;
 
 public enum CoverageTypes {
     FULL_COVERAGE,

@@ -1,4 +1,4 @@
-package insurance.pojo;
+package insurance.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

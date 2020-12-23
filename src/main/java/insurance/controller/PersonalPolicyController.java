@@ -1,8 +1,10 @@
 package insurance.controller;
 
-import insurance.pojo.PersonalPolicy;
+import insurance.dto.PersonalPolicyDTO;
+import insurance.model.PersonalPolicy;
 import insurance.service.PersonalPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,17 +17,17 @@ public class PersonalPolicyController {
     PersonalPolicyService personalPolicyService;
 
     @PostMapping("/polices")
-    public PersonalPolicy createPolicy(@RequestBody PersonalPolicy personalPolicy) {
-        return personalPolicyService.createPolice(personalPolicy);
+    public ResponseEntity <PersonalPolicyDTO> createPolicy(@RequestBody PersonalPolicyDTO personalPolicyDTO) {
+        return ResponseEntity.ok(personalPolicyService.createPolice(personalPolicyDTO));
     }
 
     @GetMapping("/polices/{policeId}")
-    public Optional<PersonalPolicy> findPolicyById(@PathVariable Integer policeId) {
-        return personalPolicyService.findPoliceById(policeId);
+    public ResponseEntity <PersonalPolicyDTO> findPolicyById(@PathVariable Integer policeId) {
+        return ResponseEntity.ok(personalPolicyService.findPoliceById(policeId));
     }
 
     @GetMapping("/polices")
-    public List<PersonalPolicy> findAllPolices() {
-        return personalPolicyService.findAllPolices();
+    public ResponseEntity<List<PersonalPolicyDTO>> findAllPolices() {
+        return ResponseEntity.ok(personalPolicyService.findAllPolices());
     }
 }

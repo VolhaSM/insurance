@@ -1,6 +1,6 @@
 package insurance.service;
 
-import insurance.pojo.PersonalPolicy;
+import insurance.model.PersonalPolicy;
 import insurance.repository.PersonalPoliceRepo;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

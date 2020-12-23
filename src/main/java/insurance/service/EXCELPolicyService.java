@@ -1,6 +1,7 @@
 package insurance.service;
 
-import insurance.pojo.PersonalPolicy;
+import insurance.dto.PersonalPolicyDTO;
+import insurance.model.PersonalPolicy;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -33,18 +34,18 @@ public class EXCELPolicyService {
                 sheet.autoSizeColumn(col);
             }
 
-            Optional <PersonalPolicy> policy = personalPolicyService.findPoliceById(policyId);
-            if(policy.isPresent()) {
+            PersonalPolicyDTO policy = personalPolicyService.findPoliceById(policyId);
+            if(policy != null) {
 
 
                 Row row = sheet.createRow(1);
 
-                row.createCell(0).setCellValue(policy.get().getId());
+                row.createCell(0).setCellValue(policy.getId());
 
-                row.createCell(1).setCellValue(policy.get().getClientId());
-                row.createCell(2).setCellValue(policy.get().getObjectOfInsurance());
-                row.createCell(3).setCellValue(policy.get().getShortDescription());
-                row.createCell(4).setCellValue(policy.get().getCoverageType().toString());
+                row.createCell(1).setCellValue(policy.getClientId());
+                row.createCell(2).setCellValue(policy.getObjectOfInsurance());
+                row.createCell(3).setCellValue(policy.getShortDescription());
+                row.createCell(4).setCellValue(policy.getCoverageType().toString());
             }
 
             else {
