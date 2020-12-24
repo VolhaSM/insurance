@@ -3,26 +3,32 @@ package insurance.service;
 import insurance.ApplicationConfiguration;
 import insurance.dto.PersonalPolicyDTO;
 import insurance.model.CoverageTypes;
-import insurance.model.PersonalPolicy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import java.io.File;
+
+import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationConfiguration.class)
+@Transactional
 public class EXCELPolicyServiceTest {
 
-    @Autowired
+    @Resource
     PersonalPolicyService personalPolicyService;
 
-    @Autowired
+    @Resource
     EXCELPolicyService excelPolicyService;
 
-    PersonalPolicy createPolicy() {
-        PersonalPolicy policy = new PersonalPolicy();
+    PersonalPolicyDTO createPolicy() {
+        PersonalPolicyDTO policy = new PersonalPolicyDTO();
         policy.setCoverageType(CoverageTypes.FULL_COVERAGE);
         policy.setObjectOfInsurance("car");
         policy.setShortDescription("car_coverage");
@@ -34,11 +40,14 @@ public class EXCELPolicyServiceTest {
     @Test
     public void writeExcelFile() {
 
-//            String excelPath = "file.xlsx";
-//            PersonalPolicyDTO policy = createPolicy();
-//            personalPolicyService.createPolice(policy);
-//
-//            excelPolicyService.writeExcelFile(policy.getId(), excelPath);
+            String excelPath = "file.xlsx";
+            PersonalPolicyDTO policy = createPolicy();
+            personalPolicyService.createPolice(policy);
+
+            excelPolicyService.writeExcelFile(policy.getId(), excelPath);
+            File file = new File(excelPath);
+            assertEquals(file.getName(), excelPath);
+            assertTrue(file.exists());
         }
 
 

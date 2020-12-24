@@ -1,5 +1,6 @@
 package insurance.service;
 
+import insurance.dto.PersonalPolicyDTO;
 import insurance.model.PersonalPolicy;
 import insurance.repository.PersonalPoliceRepo;
 import lombok.RequiredArgsConstructor;
@@ -15,24 +16,25 @@ import java.util.Optional;
 public class JSONPolicyService {
 
 
-    private final PersonalPoliceRepo personalPoliceRepo;
+    private final PersonalPolicyService personalPolicyService;
 
 
-    public JSONObject getJsonObject(Integer policeId) {
+    public JSONObject getJsonObject(int policeId) {
 
 
-        Optional <PersonalPolicy> pp = personalPoliceRepo.findById(policeId);
+        PersonalPolicyDTO pp = personalPolicyService.findPoliceById(policeId);
 
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("police", pp);
 
-        try {
-            FileWriter fileWriter = new FileWriter("data.json");
+        try
+            (FileWriter fileWriter = new FileWriter("data.json")) {
 
             fileWriter.write(jsonObject.toJSONString());
             fileWriter.flush();
-            fileWriter.close();
+
+
 
         } catch (IOException e) {
             e.printStackTrace();

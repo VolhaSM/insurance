@@ -4,43 +4,43 @@ import insurance.ApplicationConfiguration;
 import insurance.dto.InsuranceClientDTO;
 import insurance.dto.PersonalPolicyDTO;
 import insurance.model.CoverageTypes;
-import insurance.model.InsuranceClient;
-import insurance.model.PersonalPolicy;
-import org.junit.Before;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationConfiguration.class)
 @TestPropertySource(locations = "classpath:applicationTest.properties")
+@Transactional
 class ClientServiceTest {
 
 
+    @Resource
     ClientService clientService;
+    @Resource
     PersonalPolicyService policyService;
 
-    @Before
+
     public InsuranceClientDTO createInsuranceClient() {
         InsuranceClientDTO client = new InsuranceClientDTO();
         client.setId(1);
         client.setFirstName("Bob");
         client.setLastName("Marley");
-        //client.setPolice(List.of(createNewPolicy()));
+        client.setPolice(List.of(createNewPolicy()));
 
         return client;
     }
 
-    @Before
+
     public PersonalPolicyDTO createNewPolicy() {
         PersonalPolicyDTO policy = new PersonalPolicyDTO();
         policy.setId(1);
@@ -57,28 +57,29 @@ class ClientServiceTest {
     @Test
     void createClient() {
 
-       InsuranceClientDTO client1 = createInsuranceClient();
-//        clientService.createClient(client1);
-//        Optional<InsuranceClient> client = clientService.getClientById(1);
-//        assertEquals(client1.getId(), client.get().getId());
-//        assertEquals(client1.getFirstName(), client.get().getFirstName());
+        InsuranceClientDTO client1 = createInsuranceClient();
+        clientService.createClient(client1);
+        InsuranceClientDTO client = clientService.getClientById(1);
+        assertEquals(client1.getId(), client.getId());
+        assertEquals(client1.getFirstName(), client.getFirstName());
 
     }
 
     @Test
     void getClientById() {
 
-//        clientService.createClient(createInsuranceClient());
-//        Optional<InsuranceClient> client = clientService.getClientById(1);
-//        assertEquals(client.get().getId(), 1);
+        clientService.createClient(createInsuranceClient());
+        InsuranceClientDTO client = clientService.getClientById(1);
+        assertEquals(client.getId(), 1);
+        assertEquals("Bob", client.getFirstName());
     }
 
     @Test
     void findAllClients() {
 
-//        clientService.createClient(createInsuranceClient());
-//        List<InsuranceClient> clients = clientService.findAllClients();
-//        assertEquals(clients.size(), 1);
+        clientService.createClient(createInsuranceClient());
+        List<InsuranceClientDTO> clients = clientService.findAllClients();
+        assertEquals(clients.size(), 1);
     }
 
 
