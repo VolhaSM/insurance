@@ -22,12 +22,10 @@ import static org.junit.Assert.assertEquals;
 @Transactional
 class ClientServiceTest {
 
-
     @Resource
     ClientService clientService;
     @Resource
     PersonalPolicyService policyService;
-
 
     public InsuranceClientDTO createInsuranceClient() {
         InsuranceClientDTO client = new InsuranceClientDTO();
@@ -39,7 +37,6 @@ class ClientServiceTest {
         return client;
     }
 
-
     public PersonalPolicyDTO createNewPolicy() {
         PersonalPolicyDTO policy = new PersonalPolicyDTO();
         policy.setId(1);
@@ -49,7 +46,6 @@ class ClientServiceTest {
         policy.setCoverageType(CoverageTypes.FULL_COVERAGE);
 
         return policy;
-
 
     }
 
@@ -80,6 +76,4 @@ class ClientServiceTest {
         List<InsuranceClientDTO> clients = clientService.findAllClients();
         assertEquals(clients.size(), 1);
     }
-
-
 }
