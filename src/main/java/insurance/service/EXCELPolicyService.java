@@ -34,7 +34,7 @@ public class EXCELPolicyService {
             }
 
             PersonalPolicyDTO policy = personalPolicyService.findPoliceById(policyId);
-            if(policy != null) {
+            if (policy != null) {
 
 
                 Row row = sheet.createRow(1);
@@ -45,9 +45,7 @@ public class EXCELPolicyService {
                 row.createCell(2).setCellValue(policy.getObjectOfInsurance());
                 row.createCell(3).setCellValue(policy.getShortDescription());
                 row.createCell(4).setCellValue(policy.getCoverageType().toString());
-            }
-
-            else {
+            } else {
                 throw new NullPointerException("Not found");
             }
 

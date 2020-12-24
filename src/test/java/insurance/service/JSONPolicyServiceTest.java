@@ -10,10 +10,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationConfiguration.class)
@@ -26,7 +26,7 @@ public class JSONPolicyServiceTest {
     @Resource
     JSONPolicyService jsonPolicyService;
 
-    PersonalPolicyDTO createPolice(){
+    PersonalPolicyDTO createPolice() {
         PersonalPolicyDTO policyDTO = new PersonalPolicyDTO();
         policyDTO.setClientId(1);
         policyDTO.setId(1);
@@ -44,7 +44,7 @@ public class JSONPolicyServiceTest {
         File file = new File("data.json");
 
         assertTrue(file.exists());
-        assertEquals( "data.json", file.getName());
+        assertEquals("data.json", file.getName());
 
 
     }

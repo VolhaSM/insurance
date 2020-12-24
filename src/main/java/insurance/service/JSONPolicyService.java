@@ -1,15 +1,12 @@
 package insurance.service;
 
 import insurance.dto.PersonalPolicyDTO;
-import insurance.model.PersonalPolicy;
-import insurance.repository.PersonalPoliceRepo;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,11 +26,10 @@ public class JSONPolicyService {
         jsonObject.put("police", pp);
 
         try
-            (FileWriter fileWriter = new FileWriter("data.json")) {
+                (FileWriter fileWriter = new FileWriter("data.json")) {
 
             fileWriter.write(jsonObject.toJSONString());
             fileWriter.flush();
-
 
 
         } catch (IOException e) {

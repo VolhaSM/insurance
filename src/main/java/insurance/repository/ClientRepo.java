@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ClientRepo extends CrudRepository<InsuranceClient, Integer> {
 
-InsuranceClient findById(int id);
+    InsuranceClient findById(int id);
 
-List<InsuranceClient> findAll();
+    List<InsuranceClient> findAll();
 }

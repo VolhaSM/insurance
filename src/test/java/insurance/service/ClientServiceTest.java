@@ -4,7 +4,6 @@ import insurance.ApplicationConfiguration;
 import insurance.dto.InsuranceClientDTO;
 import insurance.dto.PersonalPolicyDTO;
 import insurance.model.CoverageTypes;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

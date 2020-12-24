@@ -20,5 +20,5 @@ public class InsuranceClientDTO {
     @NotNull
     private String lastName;
 
-   private List<PersonalPolicyDTO> police;
+    private List<PersonalPolicyDTO> police;
 }

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonalPoliceRepo extends CrudRepository <PersonalPolicy, Integer> {
+public interface PersonalPoliceRepo extends CrudRepository<PersonalPolicy, Integer> {
 
-PersonalPolicy findById(int policeId);
+    PersonalPolicy findById(int policeId);
 
-List<PersonalPolicy> findAll();
+    List<PersonalPolicy> findAll();
 
 }
