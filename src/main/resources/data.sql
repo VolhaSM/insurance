@@ -1,4 +1,4 @@
-insert into insurance.ainsurance_client values (1, 'ivan', 'petrov');
+insert into insurance.insurance_client values (1, 'ivan', 'petrov');
 insert into insurance.insurance_client values (2, 'petr', 'petrov');
 insert into insurance.insurance_client values (3, 'sidr', 'petrov');
 insert into insurance.personal_policy values (1,1,0,'car', 'insurance of a car');
