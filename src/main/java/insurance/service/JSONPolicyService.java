@@ -16,7 +16,7 @@ public class JSONPolicyService {
     private final PersonalPolicyService personalPolicyService;
 
 
-    public JSONObject getJsonObject(int policeId) {
+    public JSONObject getJsonObject(int policeId, String filePath) {
 
 
         PersonalPolicyDTO pp = personalPolicyService.findPoliceById(policeId);
@@ -25,8 +25,7 @@ public class JSONPolicyService {
 
         jsonObject.put("police", pp);
 
-        try
-                (FileWriter fileWriter = new FileWriter("data.json")) {
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
 
             fileWriter.write(jsonObject.toJSONString());
             fileWriter.flush();

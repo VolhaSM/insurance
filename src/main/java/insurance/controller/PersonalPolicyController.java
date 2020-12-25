@@ -2,20 +2,21 @@ package insurance.controller;
 
 import insurance.dto.PersonalPolicyDTO;
 import insurance.service.PersonalPolicyService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class PersonalPolicyController {
 
-    @Autowired
-    PersonalPolicyService personalPolicyService;
+    private final PersonalPolicyService personalPolicyService;
 
     @PostMapping("/polices")
-    public ResponseEntity<PersonalPolicyDTO> createPolicy(@RequestBody PersonalPolicyDTO personalPolicyDTO) {
+    public ResponseEntity<PersonalPolicyDTO> createPolicy(@RequestBody @Valid PersonalPolicyDTO personalPolicyDTO) {
         return ResponseEntity.ok(personalPolicyService.createPolice(personalPolicyDTO));
     }
 

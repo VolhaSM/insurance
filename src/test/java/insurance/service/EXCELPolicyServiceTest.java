@@ -40,15 +40,16 @@ public class EXCELPolicyServiceTest {
     @Test
     public void writeExcelFile() {
 
-            String excelPath = "file.xlsx";
-            PersonalPolicyDTO policy = createPolicy();
-            personalPolicyService.createPolice(policy);
+        String excelPath = "file.xlsx";
+        PersonalPolicyDTO policy = createPolicy();
+        personalPolicyService.createPolice(policy);
 
-            excelPolicyService.writeExcelFile(policy.getId(), excelPath);
-            File file = new File(excelPath);
-            assertEquals(file.getName(), excelPath);
-            assertTrue(file.exists());
-        }
+        excelPolicyService.writeExcelFile(policy.getId(), excelPath);
+        File file = new File(excelPath);
+        assertEquals(file.getName(), excelPath);
+        assertTrue(file.exists());
+        assertTrue(file.delete());
+    }
 
 
 }

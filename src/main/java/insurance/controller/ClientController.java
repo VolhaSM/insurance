@@ -2,19 +2,21 @@ package insurance.controller;
 
 import insurance.dto.InsuranceClientDTO;
 import insurance.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class ClientController {
-    @Autowired
-    ClientService clientService;
+
+    private final ClientService clientService;
 
     @PostMapping("/clients")
-    public ResponseEntity<InsuranceClientDTO> createClient(@RequestBody InsuranceClientDTO client) {
+    public ResponseEntity<InsuranceClientDTO> createClient(@RequestBody @Valid InsuranceClientDTO client) {
         return ResponseEntity.ok(clientService.createClient(client));
     }
 

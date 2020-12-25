@@ -1,24 +1,21 @@
 package insurance.controller;
 
 import insurance.service.EXCELPolicyService;
-import insurance.service.PersonalPolicyService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class EXCELPolicyController {
 
-    @Autowired
-    PersonalPolicyService personalPolicyService;
 
-    @Autowired
-    EXCELPolicyService excelPolicyService;
+    private final EXCELPolicyService excelPolicyService;
 
-    @GetMapping("/excelPolicy/{policeId}")
-    public void getExcelPolicy(@PathVariable Integer policeId) {
+    @GetMapping("/excelPolicy/{policyId}")
+    public void getExcelPolicy(@PathVariable Integer policyId) {
 
-        excelPolicyService.writeExcelFile(policeId, "ex.xlsx");
+        excelPolicyService.writeExcelFile(policyId, "ex.xlsx");
     }
 }
