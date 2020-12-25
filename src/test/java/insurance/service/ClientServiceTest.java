@@ -33,9 +33,6 @@ class ClientServiceTest {
     ClientService clientService;
 
     @Resource
-    PersonalPolicyMapper policyServiceMapper;
-
-    @Resource
     InsuranceClientMapper insuranceClientMapper;
 
     @MockBean
