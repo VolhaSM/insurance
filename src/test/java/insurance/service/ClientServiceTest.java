@@ -4,7 +4,6 @@ import insurance.ApplicationConfiguration;
 import insurance.dto.InsuranceClientDTO;
 import insurance.dto.PersonalPolicyDTO;
 import insurance.mapper.InsuranceClientMapper;
-import insurance.mapper.PersonalPolicyMapper;
 import insurance.model.CoverageTypes;
 import insurance.repository.ClientRepo;
 import org.junit.jupiter.api.Test;
@@ -59,7 +58,6 @@ class ClientServiceTest {
 
         return policy;
 
-
     }
 
     @Test
@@ -67,7 +65,6 @@ class ClientServiceTest {
 
         InsuranceClientDTO client = createInsuranceClient();
         clientService.createClient(client);
-
         Mockito.verify(clientRepo, Mockito.times(1))
                 .save(insuranceClientMapper.toInsuranceClient(client));
 
@@ -78,9 +75,7 @@ class ClientServiceTest {
 
         given(clientRepo.findById(1))
                 .willReturn(insuranceClientMapper.toInsuranceClient(createInsuranceClient()));
-
         InsuranceClientDTO insuranceClientDTO = clientService.getClientById(1);
-
         Mockito.verify(clientRepo, Mockito.times(1)).findById(1);
         assertEquals(1, insuranceClientDTO.getId());
         assertEquals("Bob", insuranceClientDTO.getFirstName());
@@ -94,6 +89,5 @@ class ClientServiceTest {
         clientService.findAllClients();
         Mockito.verify(clientRepo, Mockito.times(1)).findAll();
     }
-
 
 }

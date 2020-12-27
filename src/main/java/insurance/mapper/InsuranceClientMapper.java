@@ -1,5 +1,4 @@
 package insurance.mapper;
-
 import insurance.dto.InsuranceClientDTO;
 import insurance.model.InsuranceClient;
 import org.mapstruct.InjectionStrategy;

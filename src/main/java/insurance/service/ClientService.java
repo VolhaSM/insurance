@@ -1,20 +1,16 @@
 package insurance.service;
-
 import insurance.dto.InsuranceClientDTO;
 import insurance.mapper.InsuranceClientMapper;
 import insurance.model.InsuranceClient;
 import insurance.repository.ClientRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-
 public class ClientService {
-
 
     private final ClientRepo clientRepo;
     private final InsuranceClientMapper insuranceClientMapper;

@@ -40,14 +40,11 @@ public class JSONPolicyServiceTest {
     @Test
     public void getJsonObject() {
         PersonalPolicyDTO personalPolicyDTO = personalPolicyService.createPolice(createPolice());
-
         jsonPolicyService.getJsonObject(personalPolicyDTO.getId(), "testData.json");
         File file = new File("testData.json");
-
         assertTrue(file.exists());
         assertEquals("testData.json", file.getName());
         assertTrue(file.delete());
-
 
     }
 }

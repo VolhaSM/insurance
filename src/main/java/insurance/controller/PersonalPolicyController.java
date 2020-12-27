@@ -1,11 +1,9 @@
 package insurance.controller;
-
 import insurance.dto.PersonalPolicyDTO;
 import insurance.service.PersonalPolicyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 

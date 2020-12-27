@@ -12,10 +12,8 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -24,7 +22,6 @@ import static org.mockito.BDDMockito.given;
 @Transactional
 
 public class PersonalPolicyServiceTest {
-
 
     @MockBean
     PersonalPoliceRepo personalPolicyRepo;
@@ -42,7 +39,6 @@ public class PersonalPolicyServiceTest {
         PersonalPolicyDTO policy =
                 new PersonalPolicyDTO(1, 2, "description", "House", CoverageTypes.FULL_COVERAGE);
         personalPolicyService.createPolice(policy);
-
         Mockito.verify(personalPolicyRepo, Mockito.times(1))
                 .save(personalPolicyMapper.toPersonalPolicy(policy));
     }

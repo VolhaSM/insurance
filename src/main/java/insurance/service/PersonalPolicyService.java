@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PersonalPolicyService {
 
-
     private final PersonalPoliceRepo personalPoliceRepo;
     private final PersonalPolicyMapper personalPolicyMapper;
 
@@ -27,6 +26,7 @@ public class PersonalPolicyService {
     }
 
     public PersonalPolicyDTO findPoliceById(int policeId) {
+
         return personalPolicyMapper.toPersonalPolicyDTO(personalPoliceRepo.findById(policeId));
 
     }
