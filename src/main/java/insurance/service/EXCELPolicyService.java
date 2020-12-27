@@ -16,7 +16,7 @@ public class EXCELPolicyService {
 
     private final PersonalPolicyService personalPolicyService;
 
-    public void writeExcelFile(Integer policyId, String filePath) {
+    public void writeExcelFile(Long policyId, String filePath) {
 
         String[] columns = {"id", "clientId", "shortDescription", "objectOfInsurance", "coverageType"};
         try (Workbook workbook = new XSSFWorkbook()) {
@@ -31,7 +31,6 @@ public class EXCELPolicyService {
 
             PersonalPolicyDTO policy = personalPolicyService.findPoliceById(policyId);
             if (policy != null) {
-
                 Row row = sheet.createRow(1);
                 row.createCell(0).setCellValue(policy.getId());
                 row.createCell(1).setCellValue(policy.getClientId());
@@ -39,7 +38,7 @@ public class EXCELPolicyService {
                 row.createCell(3).setCellValue(policy.getShortDescription());
                 row.createCell(4).setCellValue(policy.getCoverageType().toString());
             } else {
-                throw new NullPointerException("Not found");
+                throw new IllegalArgumentException("Not found");
             }
 
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {

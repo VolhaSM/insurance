@@ -29,8 +29,8 @@ public class EXCELPolicyServiceTest {
         policy.setCoverageType(CoverageTypes.FULL_COVERAGE);
         policy.setObjectOfInsurance("car");
         policy.setShortDescription("car_coverage");
-        policy.setClientId(1);
-        policy.setId(1);
+        policy.setClientId(1L);
+        policy.setId(1L);
         return policy;
     }
 

@@ -11,8 +11,8 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class PersonalPolicy {
     @Id
-    private Integer id;
-    private Integer clientId;
+    private Long id;
+    private Long clientId;
     private String shortDescription;
     private String objectOfInsurance;
     private CoverageTypes coverageType;

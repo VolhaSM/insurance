@@ -1,4 +1,5 @@
 package insurance.service;
+
 import insurance.dto.PersonalPolicyDTO;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -12,11 +13,13 @@ public class JSONPolicyService {
 
     private final PersonalPolicyService personalPolicyService;
 
-    public JSONObject getJsonObject(int policeId, String filePath) {
+    public void getJsonObject(long policeId, String filePath) {
 
-        PersonalPolicyDTO pp = personalPolicyService.findPoliceById(policeId);
+        PersonalPolicyDTO policy = personalPolicyService.findPoliceById(policeId);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("police", pp);
+        if (policy.getId() != null) {
+            jsonObject.put("police", policy);
+        } else throw new IllegalArgumentException("Not Found");
 
         try (FileWriter fileWriter = new FileWriter(filePath)) {
 
@@ -26,7 +29,5 @@ public class JSONPolicyService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return jsonObject;
     }
 }

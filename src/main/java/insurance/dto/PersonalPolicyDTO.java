@@ -12,10 +12,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class PersonalPolicyDTO {
 
-    private Integer id;
+    private Long id;
 
     @NotNull
-    private Integer clientId;
+    private Long clientId;
     private String shortDescription;
 
     @NotNull

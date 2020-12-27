@@ -21,7 +21,7 @@ public class ClientService {
         return insuranceClientMapper.toInsuranceClientDTO(savedClient);
     }
 
-    public InsuranceClientDTO getClientById(int clientId) {
+    public InsuranceClientDTO getClientById(long clientId) {
 
         return insuranceClientMapper.toInsuranceClientDTO(clientRepo.findById(clientId));
     }

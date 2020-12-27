@@ -12,7 +12,7 @@ import java.util.List;
 public class InsuranceClient {
 
     @Id
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
 

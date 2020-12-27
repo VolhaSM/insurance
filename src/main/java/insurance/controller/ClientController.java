@@ -19,7 +19,7 @@ public class ClientController {
     }
 
     @GetMapping("/clients/{clientId}")
-    public ResponseEntity<InsuranceClientDTO> findClientById(@PathVariable Integer clientId) {
+    public ResponseEntity<InsuranceClientDTO> findClientById(@PathVariable Long clientId) {
         return ResponseEntity.ok(clientService.getClientById(clientId));
     }
 

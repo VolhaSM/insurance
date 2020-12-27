@@ -12,7 +12,7 @@ public class EXCELPolicyController {
     private final EXCELPolicyService excelPolicyService;
 
     @GetMapping("/excelPolicy/{policyId}")
-    public void getExcelPolicy(@PathVariable Integer policyId) {
+    public void getExcelPolicy(@PathVariable Long policyId) {
 
         excelPolicyService.writeExcelFile(policyId, "ex.xlsx");
     }

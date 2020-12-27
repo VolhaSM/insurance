@@ -37,7 +37,7 @@ public class PersonalPolicyServiceTest {
     public void createPolice() {
 
         PersonalPolicyDTO policy =
-                new PersonalPolicyDTO(1, 2, "description", "House", CoverageTypes.FULL_COVERAGE);
+                new PersonalPolicyDTO(1L, 2L, "description", "House", CoverageTypes.FULL_COVERAGE);
         personalPolicyService.createPolice(policy);
         Mockito.verify(personalPolicyRepo, Mockito.times(1))
                 .save(personalPolicyMapper.toPersonalPolicy(policy));
@@ -48,12 +48,12 @@ public class PersonalPolicyServiceTest {
     public void findPoliceById() {
 
         given(this.personalPolicyRepo.findById(1))
-                .willReturn(new PersonalPolicy(1, 1, "description", "car", CoverageTypes.FULL_COVERAGE));
+                .willReturn(new PersonalPolicy(1L, 1L, "description", "car", CoverageTypes.FULL_COVERAGE));
         PersonalPolicyDTO personalPolicy = personalPolicyService.findPoliceById(1);
-        assertEquals(1, (int) personalPolicy.getId());
+        assertEquals(1, (long) personalPolicy.getId());
         Mockito.verify(personalPolicyRepo, Mockito.times(1)).findById(1);
-        assertEquals(1, (int) personalPolicy.getId());
-        assertEquals(1, (int) personalPolicy.getClientId());
+        assertEquals(1, (long) personalPolicy.getId());
+        assertEquals(1, (long) personalPolicy.getClientId());
         assertEquals("description", personalPolicy.getShortDescription());
         assertEquals("car", personalPolicy.getObjectOfInsurance());
 

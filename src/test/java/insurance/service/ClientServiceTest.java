@@ -39,7 +39,7 @@ class ClientServiceTest {
 
     public InsuranceClientDTO createInsuranceClient() {
         InsuranceClientDTO client = new InsuranceClientDTO();
-        client.setId(1);
+        client.setId(1L);
         client.setFirstName("Bob");
         client.setLastName("Marley");
         client.setPolice(List.of(createNewPolicy()));
@@ -50,8 +50,8 @@ class ClientServiceTest {
 
     public PersonalPolicyDTO createNewPolicy() {
         PersonalPolicyDTO policy = new PersonalPolicyDTO();
-        policy.setId(1);
-        policy.setClientId(1);
+        policy.setId(1L);
+        policy.setClientId(1L);
         policy.setObjectOfInsurance("car");
         policy.setShortDescription("black");
         policy.setCoverageType(CoverageTypes.FULL_COVERAGE);
@@ -73,11 +73,11 @@ class ClientServiceTest {
     @Test
     void getClientById() {
 
-        given(clientRepo.findById(1))
+        given(clientRepo.findById(1L))
                 .willReturn(insuranceClientMapper.toInsuranceClient(createInsuranceClient()));
-        InsuranceClientDTO insuranceClientDTO = clientService.getClientById(1);
-        Mockito.verify(clientRepo, Mockito.times(1)).findById(1);
-        assertEquals(1, insuranceClientDTO.getId());
+        InsuranceClientDTO insuranceClientDTO = clientService.getClientById(1L);
+        Mockito.verify(clientRepo, Mockito.times(1)).findById(1L);
+        assertEquals(1L, (long) insuranceClientDTO.getId());
         assertEquals("Bob", insuranceClientDTO.getFirstName());
         assertEquals("Marley", insuranceClientDTO.getLastName());
         assertEquals(1, insuranceClientDTO.getPolice().size());

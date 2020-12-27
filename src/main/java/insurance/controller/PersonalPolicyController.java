@@ -19,7 +19,7 @@ public class PersonalPolicyController {
     }
 
     @GetMapping("/polices/{policeId}")
-    public ResponseEntity<PersonalPolicyDTO> findPolicyById(@PathVariable Integer policeId) {
+    public ResponseEntity<PersonalPolicyDTO> findPolicyById(@PathVariable Long policeId) {
         return ResponseEntity.ok(personalPolicyService.findPoliceById(policeId));
     }
 

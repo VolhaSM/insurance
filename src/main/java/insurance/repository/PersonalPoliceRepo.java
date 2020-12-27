@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonalPoliceRepo extends CrudRepository<PersonalPolicy, Integer> {
+public interface PersonalPoliceRepo extends CrudRepository<PersonalPolicy, Long> {
 
-    PersonalPolicy findById(int policeId);
+    PersonalPolicy findById(long policeId);
     List<PersonalPolicy> findAll();
 
 }

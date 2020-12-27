@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ClientRepo extends CrudRepository<InsuranceClient, Integer> {
+public interface ClientRepo extends CrudRepository<InsuranceClient, Long> {
 
-    InsuranceClient findById(int id);
+    InsuranceClient findById(long id);
     List<InsuranceClient> findAll();
 }

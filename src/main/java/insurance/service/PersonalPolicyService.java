@@ -6,7 +6,6 @@ import insurance.model.PersonalPolicy;
 import insurance.repository.PersonalPoliceRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class PersonalPolicyService {
         return personalPolicyMapper.toPersonalPolicyDTO(savedPolicy);
     }
 
-    public PersonalPolicyDTO findPoliceById(int policeId) {
+    public PersonalPolicyDTO findPoliceById(long policeId) {
 
         return personalPolicyMapper.toPersonalPolicyDTO(personalPoliceRepo.findById(policeId));
 

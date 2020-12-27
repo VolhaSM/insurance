@@ -28,8 +28,8 @@ public class JSONPolicyServiceTest {
 
     PersonalPolicyDTO createPolice() {
         PersonalPolicyDTO policyDTO = new PersonalPolicyDTO();
-        policyDTO.setClientId(1);
-        policyDTO.setId(1);
+        policyDTO.setClientId(1L);
+        policyDTO.setId(1L);
         policyDTO.setObjectOfInsurance("car");
         policyDTO.setShortDescription("black");
         policyDTO.setCoverageType(CoverageTypes.FULL_COVERAGE);

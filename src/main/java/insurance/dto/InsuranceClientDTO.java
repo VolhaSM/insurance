@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class InsuranceClientDTO {
 
-    private int id;
+    private Long id;
 
     @NotNull
     private String firstName;
